@@ -24,12 +24,17 @@ public class Player extends Creature
     
     private ArrayList<Choice> choices;
     private boolean key;
+    private int gameSize;
+    
+    private int xPosition = 0;
+    private int yPosition = 0;
 
     public Player(ArrayList<IArea> availableAreaTypes, int gameSize) 
     {
+        this.gameSize = gameSize;
         MapGenerator generator = new MapGenerator(availableAreaTypes);
         this.map = generator.generateMap(gameSize,gameSize);
-        this.currentArea = map[0][0];
+        this.currentArea = map[xPosition][yPosition];
         choices = currentArea.getAreaChoices();
         this.enemy = currentArea.getEnemy();
     }
@@ -44,24 +49,55 @@ public class Player extends Creature
     
     public void run()
     {
-        switch(PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter()) 
+        PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter();
+        move(xPosition,Direction.DOWN);
+            
+    } 
+
+    
+    private void move(int coord, enum direction)
+    {
+        switch(direction) 
         {
-            case 'a':
-              // code block
-              break;
-            case 'b':
-              // code block
-              break;
-            case 'c':
-              // code block
-              break;
-            case 'd':
-              // code block
-              break;
+            case Direction.RIGHT:
+                if(coord>0 && coord<gameSize)
+                {
+                    xPosition -=1;
+                    currentArea = map[xPosition][yPosition];
+                    PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter();
+                }
+                else
+                    cannot();
+                break;
+            case Direction.LEFT:
+                if(coord>0 && coord<gameSize)
+                {
+                    xPosition +=1;
+                    currentArea = map[xPosition][yPosition];
+                    PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter();
+                }
+                else
+                    cannot();
+                break;
+            case Direction.UP:
+                // code block
+                break;
+            case Direction.DOWN:
+                // code block
+                break;
             default:
-              // code block
+                cannot();
+                break;
           }
+        
+
     }
     
+    private void cannot()
+    {
+        System.out.println("You may not move in that direction");
+            PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter();
+    }
+
     
 }
