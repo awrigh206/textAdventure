@@ -6,11 +6,10 @@
 package com.andrew.textadventure.Areas;
 
 import com.andrew.textadventure.Creatures.Creature;
-import com.andrew.textadventure.Creatures.MagicFrog;
 import com.andrew.textadventure.Creatures.Player;
 import com.andrew.textadventure.Helpers.Choice;
+import com.andrew.textadventure.Helpers.PlayerInputHelper;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  *
@@ -22,6 +21,7 @@ public class KeyArea extends Area implements IArea
 
     public KeyArea() 
     {
+        super();
         this.openingLine = "Hello and welcome to this previously locked area, take a look around Mr Player";
     }
     
@@ -46,9 +46,19 @@ public class KeyArea extends Area implements IArea
     }
 
     @Override
-    public ArrayList<Choice> getAreaChoices() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Choice> getAreaChoices() 
+    {
+        ArrayList<Choice> choices = super.getGenericChoices();
+        choices.add(new Choice ("Fight the dangerous beast"));
+        return PlayerInputHelper.assignLetter(choices);
+        
     }
+
+    public String getOpeningLine() {
+        return openingLine;
+    }
+    
+    
     
     
 }

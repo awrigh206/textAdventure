@@ -17,9 +17,8 @@ public class Choice
     public Choice() {
     }
 
-    public Choice(String description, char selectionLetter) {
+    public Choice(String description) {
         this.description = description;
-        this.selectionLetter = selectionLetter;
     }
  
     public String getDescription() {

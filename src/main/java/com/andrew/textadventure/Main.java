@@ -5,8 +5,9 @@
  */
 package com.andrew.textadventure;
 
-import com.andrew.textadventure.Helpers.Choice;
-import com.andrew.textadventure.Tests.DevTest;
+import com.andrew.textadventure.Areas.IArea;
+import com.andrew.textadventure.Areas.KeyArea;
+import com.andrew.textadventure.Creatures.Player;
 import java.util.ArrayList;
 
 /**
@@ -15,11 +16,19 @@ import java.util.ArrayList;
  */
 public class Main 
 {
+    private static ArrayList<IArea> availableAreas;
     
     public static void main(String[] args)
     {
-        DevTest test = new DevTest();
-        test.testMapGeneration();
+        addAreas();
+        Player player = new Player(availableAreas,2);
+        player.run();
+    }
+    
+    private static void addAreas()
+    {
+        availableAreas = new ArrayList<>();
+        availableAreas.add(new KeyArea());
     }
     
 }

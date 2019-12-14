@@ -9,6 +9,7 @@ import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.MapGenerator;
 import java.util.ArrayList;
 import com.andrew.textadventure.Areas.IArea;
+import com.andrew.textadventure.Helpers.PlayerInputHelper;
 
 /**
  *
@@ -29,6 +30,8 @@ public class Player extends Creature
         MapGenerator generator = new MapGenerator(availableAreaTypes);
         this.map = generator.generateMap(gameSize,gameSize);
         this.currentArea = map[0][0];
+        choices = currentArea.getAreaChoices();
+        this.enemy = currentArea.getEnemy();
     }
     
     public boolean hasKey() {
@@ -37,6 +40,27 @@ public class Player extends Creature
 
     public void setKey(boolean key) {
         this.key = key;
+    }
+    
+    public void run()
+    {
+        switch(PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter()) 
+        {
+            case 'a':
+              // code block
+              break;
+            case 'b':
+              // code block
+              break;
+            case 'c':
+              // code block
+              break;
+            case 'd':
+              // code block
+              break;
+            default:
+              // code block
+          }
     }
     
     

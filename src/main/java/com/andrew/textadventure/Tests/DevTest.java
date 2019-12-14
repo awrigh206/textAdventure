@@ -25,10 +25,11 @@ public class DevTest implements Test
     public void test() 
     {
         //test the player input system
-        choices.add(new Choice("Go forwards",'a'));
-        choices.add(new Choice("Go backwards",'b'));
-        choices.add(new Choice("Go left",'c'));
-        choices.add(new Choice("Go right",'d'));
+        choices.add(new Choice("Go forwards"));
+        choices.add(new Choice("Go backwards"));
+        choices.add(new Choice("Go left"));
+        choices.add(new Choice("Go right"));
+        choices = PlayerInputHelper.assignLetter(choices);
         
         System.out.println("The choice that you chose was: " + PlayerInputHelper.getOption("Please enter what you would like to do: ", choices));
     }

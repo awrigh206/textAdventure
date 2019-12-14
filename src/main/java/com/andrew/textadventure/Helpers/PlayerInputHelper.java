@@ -39,7 +39,7 @@ public class PlayerInputHelper
         }
     }
     
-    public static Choice matchChoice(ArrayList<Choice> choices, String input)
+    private static Choice matchChoice(ArrayList<Choice> choices, String input)
     {
         Choice matchingChoice = new Choice();
         for (Choice choice: choices)
@@ -52,7 +52,7 @@ public class PlayerInputHelper
         return matchingChoice;
     }
     
-    public static boolean filterInput(String input, ArrayList<Choice> choices)
+    private static boolean filterInput(String input, ArrayList<Choice> choices)
     {
         if(input.length()>1 || input.length()<1)
         {
@@ -72,5 +72,14 @@ public class PlayerInputHelper
             return true;
         else 
             return false;
+    }
+    
+    public static ArrayList<Choice> assignLetter(ArrayList<Choice> choices)
+    {
+        for (int i =0; i<choices.size(); i++) 
+        {
+            choices.get(i).setSelectionLetter((char)(i+65));
+        }
+        return choices;
     }
 }

@@ -20,5 +20,6 @@ public interface IArea
     public void generateEnemy();
     public Creature getEnemy();
     public ArrayList<Choice> getAreaChoices();
+    public String getOpeningLine();
     public String toString();
 }
