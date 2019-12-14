@@ -5,9 +5,9 @@
  */
 package com.andrew.textadventure.Helpers;
 
-import com.andrew.textadventure.Areas.Area;
 import java.util.ArrayList;
 import java.util.Random;
+import com.andrew.textadventure.Areas.IArea;
 
 /**
  *
@@ -15,21 +15,21 @@ import java.util.Random;
  */
 public class MapGenerator 
 {
-    public ArrayList<Area> typeOfArea;
+    public ArrayList<IArea> typeOfArea;
     private int width;
     private int height;
-    private Area[][] map;
+    private IArea[][] map;
 
-    public MapGenerator(ArrayList<Area> typeOfArea) {
+    public MapGenerator(ArrayList<IArea> typeOfArea) {
         this.typeOfArea = typeOfArea;
     }
     
-    public Area[][] generateMap(int width, int height)
+    public IArea[][] generateMap(int width, int height)
     {
         this.width = width;
         this.height = height;
         
-        Area[][] map = new Area[width][height];
+        IArea[][] map = new IArea[width][height];
         for(int i =0; i<width; i++)
         {
             for(int j =0; j<height; j++)
@@ -41,7 +41,7 @@ public class MapGenerator
         return map;
     }
     
-    private Area selectType()
+    private IArea selectType()
     {
         Random random = new Random();
         int number = random.nextInt(typeOfArea.size());

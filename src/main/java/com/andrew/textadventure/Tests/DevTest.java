@@ -5,12 +5,12 @@
  */
 package com.andrew.textadventure.Tests;
 
-import com.andrew.textadventure.Areas.Area;
 import com.andrew.textadventure.Areas.KeyArea;
 import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.MapGenerator;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;
 import java.util.ArrayList;
+import com.andrew.textadventure.Areas.IArea;
 
 /**
  *
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class DevTest implements Test
 {
     private ArrayList<Choice> choices = new ArrayList<>();
-    private ArrayList<Area> areas = new ArrayList<>();
+    private ArrayList<IArea> areas = new ArrayList<>();
 
     @Override
     public void test() 
@@ -37,7 +37,7 @@ public class DevTest implements Test
     {
         areas.add(new KeyArea());
         MapGenerator generator = new MapGenerator(areas);
-        Area[][] map = generator.generateMap(2, 2);
+        IArea[][] map = generator.generateMap(2, 2);
         System.out.println(generator.toString());
     }
 }

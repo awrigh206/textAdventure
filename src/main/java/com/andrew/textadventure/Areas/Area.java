@@ -6,16 +6,41 @@
 package com.andrew.textadventure.Areas;
 
 import com.andrew.textadventure.Creatures.Creature;
-import com.andrew.textadventure.Creatures.Player;
+import com.andrew.textadventure.Creatures.MagicFrog;
+import com.andrew.textadventure.Helpers.Choice;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
  * @author Andrew Wright
  */
-public interface Area 
+public abstract class Area implements IArea
 {
-    public boolean canEnter(Player player);
-    public void generateEnemy();
-    public Creature getEnemy();
-    public String toString();
+    protected Creature enemy;
+    protected ArrayList<Creature> possibleCreatures;
+    protected ArrayList<Choice> areaChoices;
+
+    public Area() 
+    {
+        possibleCreatures.add(new MagicFrog());
+    }
+    
+    @Override
+    public void generateEnemy() 
+    {
+        Random rand = new Random();
+        int number = rand.nextInt(1);
+        if(number == 1)
+        {
+            enemy = chooseEnemy();
+        }
+    }
+    
+    private Creature chooseEnemy()
+    {
+        Random rand = new Random();
+        int num = rand.nextInt(possibleCreatures.size());
+        return possibleCreatures.get(num);
+    }
 }

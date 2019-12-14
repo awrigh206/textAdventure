@@ -5,10 +5,10 @@
  */
 package com.andrew.textadventure.Creatures;
 
-import com.andrew.textadventure.Areas.Area;
 import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.MapGenerator;
 import java.util.ArrayList;
+import com.andrew.textadventure.Areas.IArea;
 
 /**
  *
@@ -17,14 +17,14 @@ import java.util.ArrayList;
 public class Player extends Creature
 {
     private Creature enemy;
-    private Area currentArea;
-    private Area[][] map;
+    private IArea currentArea;
+    private IArea[][] map;
     
     
     private ArrayList<Choice> choices;
     private boolean key;
 
-    public Player(ArrayList<Area> availableAreaTypes, int gameSize) 
+    public Player(ArrayList<IArea> availableAreaTypes, int gameSize) 
     {
         MapGenerator generator = new MapGenerator(availableAreaTypes);
         this.map = generator.generateMap(gameSize,gameSize);
