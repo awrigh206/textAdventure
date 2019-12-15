@@ -5,6 +5,8 @@
  */
 package com.andrew.textadventure.Helpers;
 
+import java.lang.reflect.Method;
+
 /**
  *
  * @author Andrew Wright
@@ -13,12 +15,17 @@ public class Choice
 {
     private String description;
     private char selectionLetter;
+    private Method action;
+    private boolean isMovement = false;
+    
+    private int direction;
 
     public Choice() {
     }
 
-    public Choice(String description) {
+    public Choice(String description, Method action, boolean isMovement) {
         this.description = description;
+        this.action = action;
     }
  
     public String getDescription() {
@@ -41,5 +48,28 @@ public class Choice
     public String toString() {
         return  "description=" + description + ", selectionLetter=" + selectionLetter;
     }
+
+    public Method getAction() {
+        return action;
+    }
+
+    public void setAction(Method action) {
+        this.action = action;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public boolean isMovement() {
+        return isMovement;
+    }
+    
+    
+    
     
 }

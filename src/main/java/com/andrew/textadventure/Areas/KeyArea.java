@@ -49,7 +49,15 @@ public class KeyArea extends Area implements IArea
     public ArrayList<Choice> getAreaChoices() 
     {
         ArrayList<Choice> choices = super.getGenericChoices();
-        choices.add(new Choice ("Fight the dangerous beast"));
+        try
+        {
+            choices.add(new Choice ("Fight the dangerous beast" ,Player.class.getMethod("notImplementedYet"),false));
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
         return PlayerInputHelper.assignLetter(choices);
         
     }

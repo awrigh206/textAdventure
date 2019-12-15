@@ -10,6 +10,7 @@ import com.andrew.textadventure.Helpers.MapGenerator;
 import java.util.ArrayList;
 import com.andrew.textadventure.Areas.IArea;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;
+import java.lang.reflect.Method;
 
 /**
  *
@@ -19,15 +20,15 @@ public class Player extends Creature
 {
     private Creature enemy;
     private IArea currentArea;
-    private IArea[][] map;
+    private final IArea[][] map;
     
     
     private ArrayList<Choice> choices;
     private boolean key;
-    private int gameSize;
+    private final int gameSize;
     
-    private int xPosition = 0;
-    private int yPosition = 0;
+    private static int xPosition = 0;
+    private static int yPosition = 0;
 
     public Player(ArrayList<IArea> availableAreaTypes, int gameSize) 
     {
@@ -49,54 +50,59 @@ public class Player extends Creature
     
     public void run()
     {
-        PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter();
-        move(xPosition,Direction.DOWN);
+        Choice option = PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices);
+        
+        try
+        {
+            if(option.isMovement())
+            {
+                Method action = option.getAction();
+                action.invoke(this,xPosition,option.getDirection());
+            }
+        }
+        
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
             
     } 
 
     
-    private void move(int coord, enum direction)
+    public void moveX(int coord, int direction)
     {
-        switch(direction) 
+        if(coord>0 && coord<gameSize)
         {
-            case Direction.RIGHT:
-                if(coord>0 && coord<gameSize)
-                {
-                    xPosition -=1;
-                    currentArea = map[xPosition][yPosition];
-                    PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter();
-                }
-                else
-                    cannot();
-                break;
-            case Direction.LEFT:
-                if(coord>0 && coord<gameSize)
-                {
-                    xPosition +=1;
-                    currentArea = map[xPosition][yPosition];
-                    PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter();
-                }
-                else
-                    cannot();
-                break;
-            case Direction.UP:
-                // code block
-                break;
-            case Direction.DOWN:
-                // code block
-                break;
-            default:
-                cannot();
-                break;
-          }
-        
-
+            coord += (direction * 1);
+            currentArea = map[coord][yPosition];
+            run();
+        }
+        else 
+            cannot();
+    }
+    
+    public void moveY(int coord, int direction)
+    {
+        if(coord>0 && coord<gameSize)
+        {
+            coord += (direction * 1);
+            currentArea = map[xPosition][coord];
+            run();
+        }
+        else
+            cannot();
     }
     
     private void cannot()
     {
         System.out.println("You may not move in that direction");
-            PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices).getSelectionLetter();
+        run();
+    }
+    
+    public void notImplementedYet()
+    {
+        
     }
 
     

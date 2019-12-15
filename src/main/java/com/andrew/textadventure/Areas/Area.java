@@ -7,6 +7,7 @@ package com.andrew.textadventure.Areas;
 
 import com.andrew.textadventure.Creatures.Creature;
 import com.andrew.textadventure.Creatures.MagicFrog;
+import com.andrew.textadventure.Creatures.Player;
 import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;
 import java.util.ArrayList;
@@ -48,11 +49,32 @@ public abstract class Area implements IArea
     
     protected ArrayList<Choice> getGenericChoices()
     {
+        Class playerClass = Player.class;
         ArrayList<Choice> choices = new ArrayList<>();
-        choices.add(new Choice("Go forwards"));
-        choices.add(new Choice("Go backwards"));
-        choices.add(new Choice("Go left"));
-        choices.add(new Choice("Go right"));
+        try
+        {
+            Choice upwards = new Choice("Go upwards",playerClass.getMethod("moveY",int.class,int.class),true);
+            upwards.setDirection(1);
+            choices.add(upwards);
+            
+            Choice backwards = new Choice("Go backwards",playerClass.getMethod("moveY",int.class,int.class),true);
+            backwards.setDirection(-1);
+            choices.add(backwards);
+            
+            Choice left = new Choice("Go left",playerClass.getMethod("moveX",int.class,int.class),true);
+            backwards.setDirection(-1);
+            choices.add(left);
+            
+            Choice right = new Choice("Go right",playerClass.getMethod("moveX",int.class,int.class),true);
+            backwards.setDirection(1);
+            choices.add(right);
+        }
+        
+        catch (NoSuchMethodException e)
+        {
+            e.printStackTrace();
+        }
+        
         return PlayerInputHelper.assignLetter(choices);
     }
 }

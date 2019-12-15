@@ -62,7 +62,7 @@ public class PlayerInputHelper
         boolean matchesAChoice = false;
         for(Choice choice : choices)
         {
-            if(choice.getSelectionLetter() == input.charAt(0))
+            if(choice.getSelectionLetter() == input.toUpperCase().charAt(0))
             {
                 matchesAChoice = true;
             }
