@@ -21,7 +21,7 @@ public class Main
     public static void main(String[] args)
     {
         addAreas();
-        Player player = new Player(availableAreas,2);
+        Player player = new Player(availableAreas,5);
         player.run();
     }
     
