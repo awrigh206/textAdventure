@@ -59,6 +59,11 @@ public class Player extends Creature
                 Method action = option.getAction();
                 action.invoke(this,xPosition,option.getDirection());
             }
+            
+            else
+            {
+                System.out.println(option.toString());
+            }
         }
         
         catch(Exception e)
@@ -84,6 +89,7 @@ public class Player extends Creature
     
     public void moveY(int coord, int direction)
     {
+        System.out.println("coord:" +coord +"direction:"+direction);
         if(coord>0 && coord<gameSize)
         {
             coord += (direction * 1);

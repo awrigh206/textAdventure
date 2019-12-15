@@ -57,16 +57,16 @@ public abstract class Area implements IArea
             upwards.setDirection(1);
             choices.add(upwards);
             
-            Choice backwards = new Choice("Go backwards",playerClass.getMethod("moveY",int.class,int.class),true);
-            backwards.setDirection(-1);
-            choices.add(backwards);
+            Choice downwards = new Choice("Go downwards",playerClass.getMethod("moveY",int.class,int.class),true);
+            downwards.setDirection(-1);
+            choices.add(downwards);
             
             Choice left = new Choice("Go left",playerClass.getMethod("moveX",int.class,int.class),true);
-            backwards.setDirection(-1);
+            left.setDirection(-1);
             choices.add(left);
             
             Choice right = new Choice("Go right",playerClass.getMethod("moveX",int.class,int.class),true);
-            backwards.setDirection(1);
+            right.setDirection(1);
             choices.add(right);
         }
         

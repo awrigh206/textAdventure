@@ -26,6 +26,7 @@ public class Choice
     public Choice(String description, Method action, boolean isMovement) {
         this.description = description;
         this.action = action;
+        this.isMovement = isMovement;
     }
  
     public String getDescription() {
@@ -46,7 +47,7 @@ public class Choice
 
     @Override
     public String toString() {
-        return  "description=" + description + ", selectionLetter=" + selectionLetter;
+        return  "description=" + description + ", selectionLetter=" + selectionLetter +", isMovement="+isMovement;
     }
 
     public Method getAction() {
