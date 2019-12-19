@@ -77,7 +77,7 @@ public class Player extends Creature
     
     public void moveX(int coord, int direction)
     {
-        if(coord+direction>=0 )
+        if(coord+direction>=0 && !((gameSize-1) <= yPosition + coord))
         {
             //&& coord+direction<gameSize
             coord += (direction * 1);
@@ -91,18 +91,19 @@ public class Player extends Creature
     
     public void moveY(int coord, int direction)
     {
-        System.out.println("coord:" +coord +"direction:"+direction +"game size:"+gameSize +"xPosition:" +xPosition+"yPosition:" + yPosition);
-        if((yPosition+direction)>=0)
+        System.out.println("game Size:" + gameSize+"calc comes to:"+ (yPosition + coord));
+        if((yPosition+direction)>=0 && !((gameSize-1) <= yPosition + coord))
         {
             //gameSize<=(yPosition+direction) && 
-            System.out.println("runs the if");
             coord += (direction * 1);
             yPosition += coord;
             currentArea = map[xPosition][yPosition];
             run();
         }
+        
         else
             cannot();
+        System.out.println("coord:" +coord +"direction:"+direction +"game size:"+gameSize +"xPosition:" +xPosition+"yPosition:" + yPosition);
     }
     
     private void cannot()
