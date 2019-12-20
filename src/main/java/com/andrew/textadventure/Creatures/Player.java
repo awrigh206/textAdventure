@@ -230,6 +230,10 @@ public class Player extends Creature
     public static void setyPosition(int yPosition) {
         Player.yPosition = yPosition;
     }
+
+    public int getGameSize() {
+        return gameSize;
+    }
     
     
     

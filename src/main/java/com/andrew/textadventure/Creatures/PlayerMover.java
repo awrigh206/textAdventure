@@ -5,36 +5,44 @@
  */
 package com.andrew.textadventure.Creatures;
 
+import com.andrew.textadventure.Areas.IArea;
+import com.andrew.textadventure.Helpers.Colours;
+
 /**
  *
  * @author Andrew Wright
  */
 public class PlayerMover 
 {
+    private final IArea[][] map;
+    private final Player player;
+    private final Colours colours;
 
-    public PlayerMover() {
+    public PlayerMover(IArea[][] map, Player player) 
+    {
+        this.map = map;
+        this.player = player;
+        this.colours = new Colours();
     }
     
     
-    public void moveX( int direction)
+    public IArea moveX( int direction)
     {
         Player.setxPosition(move(direction,Player.getxPosition()));
-        currentArea = map[xPosition][yPosition];
-        run();
+        return map[Player.getxPosition()][Player.getyPosition()];
     }
     
-    public void moveY(int direction)
+    public IArea moveY(int direction)
     {
-        yPosition =move(direction,yPosition);
-        currentArea = map[xPosition][yPosition];
-        run();
+        Player.setyPosition(move(direction,Player.getyPosition()));
+        return map[Player.getxPosition()][Player.getyPosition()];
     }
     
     public int move(int direction, int axis)
     {
-        int limit = yPosition + direction;
+        int limit = axis + direction;
         System.out.println("direction: " +direction+"axis: " +axis);
-        if((axis+direction)>=0 && !((gameSize-1) <= limit))
+        if((axis+direction)>=0 && !((player.getGameSize()-1) <= limit))
         {
             axis += direction;
             return axis;
@@ -51,6 +59,5 @@ public class PlayerMover
     private void cannot()
     {
         System.err.println(colours.getRed()+"You may not move in that direction"+colours.getReset());
-        run();
     }
 }
