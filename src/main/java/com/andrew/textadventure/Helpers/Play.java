@@ -18,12 +18,14 @@ public class Play
     private final Gesture userGesture;
     private Gesture computerGesture;
     private ArrayList<Gesture> possibleGestures;
+    private Colours colours;
     
     public Play(Gesture userChoice, ArrayList<Gesture> gestures)
     {
         this.userGesture = userChoice;
         this.possibleGestures = gestures;
         selectGesture();
+        this.colours = new Colours();
     }
     
     public void selectGesture()
