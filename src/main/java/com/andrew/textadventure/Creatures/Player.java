@@ -58,7 +58,7 @@ public class Player extends Creature
             Method action = option.getAction();
             if(option.isMovement())
             {
-                action.invoke(this,xPosition,option.getDirection());
+                action.invoke(this,option.getDirection());
             }
             
             else if (!option.isMovement())
@@ -81,35 +81,36 @@ public class Player extends Creature
     } 
 
     
-    public void moveX(int coord, int direction)
+    public void moveX( int direction)
     {
-        if(coord+direction>=0 && !((gameSize-1) <= yPosition + coord))
-        {
-            //&& coord+direction<gameSize
-            coord += (direction * 1);
-            xPosition+= coord;
-            currentArea = map[xPosition][yPosition];
-            run();
-        }
-        else 
-            cannot();
+        xPosition =move(direction,xPosition);
+        currentArea = map[xPosition][yPosition];
+        run();
     }
     
-    public void moveY(int coord, int direction)
+    public void moveY(int direction)
     {
-        System.out.println("game Size:" + gameSize+"calc comes to:"+ (yPosition + coord));
-        if((yPosition+direction)>=0 && !((gameSize-1) <= yPosition + coord))
+        yPosition =move(direction,yPosition);
+        currentArea = map[xPosition][yPosition];
+        run();
+    }
+    
+    public int move(int direction, int axis)
+    {
+        int limit = yPosition + direction;
+        System.out.println("direction: " +direction+"axis: " +axis);
+        if((axis+direction)>=0 && !((gameSize-1) <= limit))
         {
-            //gameSize<=(yPosition+direction) && 
-            coord += (direction * 1);
-            yPosition += coord;
-            currentArea = map[xPosition][yPosition];
-            run();
+            axis += direction;
+            return axis;
         }
         
         else
+        {
             cannot();
-        System.out.println("coord:" +coord +"direction:"+direction +"game size:"+gameSize +"xPosition:" +xPosition+"yPosition:" + yPosition);
+            return 0;
+        }
+            
     }
     
     private void cannot()

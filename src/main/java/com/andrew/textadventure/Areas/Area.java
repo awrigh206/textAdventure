@@ -54,19 +54,19 @@ public abstract class Area implements IArea
         ArrayList<Choice> choices = new ArrayList<>();
         try
         {
-            Choice upwards = new Choice("Go upwards",playerClass.getMethod("moveY",int.class,int.class),true);
+            Choice upwards = new Choice("Go upwards",playerClass.getMethod("moveY",int.class),true);
             upwards.setDirection(1);
             choices.add(upwards);
             
-            Choice downwards = new Choice("Go downwards",playerClass.getMethod("moveY",int.class,int.class),true);
+            Choice downwards = new Choice("Go downwards",playerClass.getMethod("moveY",int.class),true);
             downwards.setDirection(-1);
             choices.add(downwards);
             
-            Choice left = new Choice("Go left",playerClass.getMethod("moveX",int.class,int.class),true);
+            Choice left = new Choice("Go left",playerClass.getMethod("moveX",int.class),true);
             left.setDirection(-1);
             choices.add(left);
             
-            Choice right = new Choice("Go right",playerClass.getMethod("moveX",int.class,int.class),true);
+            Choice right = new Choice("Go right",playerClass.getMethod("moveX",int.class),true);
             right.setDirection(1);
             choices.add(right);
         }
