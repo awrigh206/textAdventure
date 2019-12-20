@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class KeyArea extends Area implements IArea 
 { 
-    private String openingLine;
+    private final String openingLine;
 
     public KeyArea() 
     {
@@ -51,7 +51,7 @@ public class KeyArea extends Area implements IArea
         ArrayList<Choice> choices = super.getGenericChoices();
         try
         {
-            choices.add(new Choice ("Fight the dangerous beast" ,Player.class.getMethod("notImplementedYet"),false));
+            choices.add(new Choice ("Fight the dangerous beast" ,Player.class.getMethod("fight"),false));
         }
         catch(Exception e)
         {

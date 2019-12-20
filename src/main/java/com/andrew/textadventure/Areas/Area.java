@@ -27,6 +27,7 @@ public abstract class Area implements IArea
     {
         possibleCreatures = new ArrayList<>();
         possibleCreatures.add(new MagicFrog());
+        generateEnemy();
     }
     
     @Override
@@ -34,9 +35,9 @@ public abstract class Area implements IArea
     {
         Random rand = new Random();
         int number = rand.nextInt(1);
-        if(number == 1)
+        if(1 == 1)  //chnage this at a later date to give the ability to have some areas with no enemys
         {
-            enemy = chooseEnemy();
+            this.enemy = chooseEnemy();
         }
     }
     

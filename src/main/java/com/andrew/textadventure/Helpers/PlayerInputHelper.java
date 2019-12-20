@@ -27,6 +27,7 @@ public class PlayerInputHelper
         
         Scanner scanner = new Scanner(System.in);
         String text = scanner.next();
+        text = text.toUpperCase();
         
         if(filterInput(text,choices))
         {

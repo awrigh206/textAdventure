@@ -38,6 +38,7 @@ public class Player extends Creature
         this.currentArea = map[xPosition][yPosition];
         choices = currentArea.getAreaChoices();
         this.enemy = currentArea.getEnemy();
+
     }
     
     public boolean hasKey() {
@@ -54,10 +55,15 @@ public class Player extends Creature
         
         try
         {
+            Method action = option.getAction();
             if(option.isMovement())
             {
-                Method action = option.getAction();
                 action.invoke(this,xPosition,option.getDirection());
+            }
+            
+            else if (!option.isMovement())
+            {
+                action.invoke(this);
             }
             
             else
@@ -116,6 +122,43 @@ public class Player extends Creature
     {
         
     }
+    
+    public void fight ()
+    {
+        try
+        {
+            System.out.println("You have chosen to fight the: " + enemy.getName());
+            System.out.println("The:" +enemy.getName()+" has "+ enemy.getHealth() +" health points");
 
+            ArrayList<Choice> choices = new ArrayList<>();
+            choices.add(new Choice("Attack!!",Player.class.getMethod("attack"),false));
+            choices.add(new Choice("Defend",Player.class.getMethod("defend"),false));
+            choices.add(new Choice("Run away",Player.class.getMethod("runAway"),false));
+
+            choices = PlayerInputHelper.assignLetter(choices);
+            PlayerInputHelper.getOption("What would you like to do next?", choices);
+        }
+        
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public void attack()
+    {
+        
+    }
+
+    public void defend()
+    {
+        
+    }
+    
+    public void runAway()
+    {
+        
+    }
     
 }
