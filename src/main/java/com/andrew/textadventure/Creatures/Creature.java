@@ -39,5 +39,10 @@ public abstract class Creature
         this.damage = damage;
     }
     
+    public void takeDamage()
+    {
+        this.health --;
+    }
+    
     
 }

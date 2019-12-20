@@ -42,6 +42,8 @@ public class Player extends Creature
         choices = currentArea.getAreaChoices();
         this.enemy = currentArea.getEnemy();
         this.colours = new Colours();
+        
+        this.health=20;
 
     }
     
@@ -141,7 +143,10 @@ public class Player extends Creature
             choices.add(new Choice("Run away",Player.class.getMethod("runAway"),false));
 
             choices = PlayerInputHelper.assignLetter(choices);
-            PlayerInputHelper.getOption("What would you like to do next?", choices);
+            Choice option = PlayerInputHelper.getOption("What would you like to do next?", choices);
+            
+            aiMove();
+            option.getAction().invoke(this);
         }
         
         catch (Exception e)
@@ -151,9 +156,29 @@ public class Player extends Creature
         
     }
     
+    private void aiMove()
+    {
+        // This will be expanded at a later date to make the AI do more than just attack once each turn
+        System.out.println("The " +enemy.getName() +" moves fowards to attack you!!!");
+        takeDamage();
+        System.out.println("You now have: " + health +" health points");
+    }
+    
     public void attack()
     {
-        
+        if(enemy.getHealth()>1)
+        {
+            enemy.takeDamage();
+            fight();
+        }
+            
+        else
+        {
+            System.out.println("The " + enemy.getName() +" Lies dead");
+            run();
+        }
+            
+
     }
 
     public void defend()
