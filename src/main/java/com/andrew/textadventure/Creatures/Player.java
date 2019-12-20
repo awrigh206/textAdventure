@@ -214,5 +214,23 @@ public class Player extends Creature
             run();
         }
     }
+
+    public static int getxPosition() {
+        return xPosition;
+    }
+
+    public static void setxPosition(int xPosition) {
+        Player.xPosition = xPosition;
+    }
+
+    public static int getyPosition() {
+        return yPosition;
+    }
+
+    public static void setyPosition(int yPosition) {
+        Player.yPosition = yPosition;
+    }
+    
+    
     
 }
