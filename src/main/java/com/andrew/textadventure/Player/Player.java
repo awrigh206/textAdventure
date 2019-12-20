@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.andrew.textadventure.Creatures;
+package com.andrew.textadventure.Player;
 
 import com.andrew.textadventure.Areas.GameArea;
 import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.MapGenerator;
 import java.util.ArrayList;
 import com.andrew.textadventure.Areas.IArea;
+import com.andrew.textadventure.Creatures.Creature;
 import com.andrew.textadventure.Helpers.Colours;
 import com.andrew.textadventure.Helpers.Gesture;
 import com.andrew.textadventure.Helpers.Play;

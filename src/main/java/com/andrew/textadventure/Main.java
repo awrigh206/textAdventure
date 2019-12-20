@@ -8,7 +8,7 @@ package com.andrew.textadventure;
 import com.andrew.textadventure.Areas.GameArea;
 import com.andrew.textadventure.Areas.IArea;
 import com.andrew.textadventure.Areas.KeyArea;
-import com.andrew.textadventure.Creatures.Player;
+import com.andrew.textadventure.Player.Player;
 import java.util.ArrayList;
 
 /**

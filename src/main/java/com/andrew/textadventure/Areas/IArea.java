@@ -6,7 +6,7 @@
 package com.andrew.textadventure.Areas;
 
 import com.andrew.textadventure.Creatures.Creature;
-import com.andrew.textadventure.Creatures.Player;
+import com.andrew.textadventure.Player.Player;
 import com.andrew.textadventure.Helpers.Choice;
 import java.util.ArrayList;
 

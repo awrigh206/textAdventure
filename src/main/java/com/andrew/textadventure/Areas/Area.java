@@ -7,8 +7,8 @@ package com.andrew.textadventure.Areas;
 
 import com.andrew.textadventure.Creatures.Creature;
 import com.andrew.textadventure.Creatures.MagicFrog;
-import com.andrew.textadventure.Creatures.Player;
-import com.andrew.textadventure.Creatures.PlayerMover;
+import com.andrew.textadventure.Player.Player;
+import com.andrew.textadventure.Player.PlayerMover;
 import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.Colours;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;

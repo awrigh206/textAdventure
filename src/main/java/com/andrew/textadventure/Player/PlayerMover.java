@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.andrew.textadventure.Creatures;
+package com.andrew.textadventure.Player;
 
 import com.andrew.textadventure.Areas.IArea;
 import com.andrew.textadventure.Helpers.Colours;
