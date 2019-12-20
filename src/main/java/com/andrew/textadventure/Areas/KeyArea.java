@@ -9,6 +9,7 @@ import com.andrew.textadventure.Creatures.Creature;
 import com.andrew.textadventure.Player.Player;
 import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;
+import com.andrew.textadventure.Player.Combat;
 import java.util.ArrayList;
 
 /**
@@ -44,7 +45,9 @@ public class KeyArea extends Area implements IArea
         ArrayList<Choice> choices = super.getGenericChoices();
         try
         {
-            choices.add(new Choice ("Fight the dangerous beast" ,Player.class.getMethod("fight"),false));
+            Choice fightChoice = new Choice ("Fight the dangerous beast" ,Combat.class.getMethod("fight"),false);
+            fightChoice.setInvokeOn("c");
+            choices.add(fightChoice);
         }
         catch(Exception e)
         {

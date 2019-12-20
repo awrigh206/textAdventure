@@ -39,7 +39,8 @@ public class Player extends Creature
     private static int yPosition = 0;
     
     private Choice choice;
-    private PlayerMover mover;
+    private final PlayerMover mover;
+    private Combat combat;
 
     public Player(ArrayList<IArea> availableAreaTypes, int gameSize) 
     {
@@ -67,6 +68,7 @@ public class Player extends Creature
         this.currentArea = map[xPosition][yPosition];
         this.choices = currentArea.getAreaChoices();
         this.enemy = currentArea.getEnemy();
+        this.combat = new Combat(this);
         
         Choice option = PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices);
         choice = option;
@@ -82,7 +84,22 @@ public class Player extends Creature
             
             else if (!option.isMovement())
             {
-                action.invoke(this);
+                try
+                {
+                    if(option.getInvokeOn().equals("c"))
+                    {
+                        action.invoke(combat);
+                    }
+                    else
+                    {
+                        action.invoke(this);
+                    }
+                }
+                catch(NullPointerException e)
+                {
+                    action.invoke(this);
+                }
+                
             }
             
             else
@@ -98,68 +115,6 @@ public class Player extends Creature
         
             
     } 
-    
-    public void fight ()
-    {
-        try
-        {
-            System.out.println("You have chosen to fight the: " + enemy.getName());
-            System.out.println("The:" +enemy.getName()+" has "+ enemy.getHealth() +" health points");
-
-            ArrayList<Choice> choices = new ArrayList<>();
-            choices.add(new Choice("Attack!!",Player.class.getMethod("attack"),false));
-            choices.add(new Choice("Defend",Player.class.getMethod("defend"),false));
-            choices.add(new Choice("Run away",Player.class.getMethod("runAway"),false));
-
-            choices = PlayerInputHelper.assignLetter(choices);
-            Choice option = PlayerInputHelper.getOption("What would you like to do next?", choices);
-            
-            option.getAction().invoke(this);
-        }
-        
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-    }
-    
-    private void aiMove()
-    {
-        // This will be expanded at a later date to make the AI do more than just attack once each turn
-        System.out.println("The " +enemy.getName() +" moves fowards to attack you!!!");
-        takeDamage();
-        System.out.println("You now have: " + health +" health points");
-    }
-    
-    public void attack()
-    {
-        aiMove();
-        if(enemy.getHealth()>1)
-        {
-            enemy.takeDamage();
-            fight();
-        }
-            
-        else
-        {
-            System.out.println("The " + enemy.getName() +" Lies dead");
-            run();
-        }
-            
-
-    }
-
-    public void defend()
-    {
-         System.out.println("You block the " + enemy.getName()+"'s vicous assualt, but what now?");
-         fight();
-    }
-    
-    public void runAway()
-    {
-        run();
-    }
     
     public void play()
     {
@@ -210,9 +165,8 @@ public class Player extends Creature
     {
         System.exit(0);
     }
-    
-    
-    
-    
-    
+
+    public Creature getEnemy() {
+        return enemy;
+    } 
 }

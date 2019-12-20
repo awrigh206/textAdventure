@@ -17,6 +17,7 @@ public class Choice
     private char selectionLetter;
     private Method action;
     private boolean isMovement = false;
+    private Object invokeOn;
     
     private int direction;
 
@@ -69,6 +70,15 @@ public class Choice
     public boolean isMovement() {
         return isMovement;
     }
+
+    public Object getInvokeOn() {
+        return invokeOn;
+    }
+
+    public void setInvokeOn(Object invokeOn) {
+        this.invokeOn = invokeOn;
+    }
+    
     
     
     

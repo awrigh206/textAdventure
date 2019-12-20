@@ -87,6 +87,7 @@ public abstract class Area implements IArea
         return PlayerInputHelper.assignLetter(choices);
     }
 
+    @Override
     public Creature getEnemy() {
         return enemy;
     }
