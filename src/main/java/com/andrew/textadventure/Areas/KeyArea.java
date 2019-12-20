@@ -22,7 +22,7 @@ public class KeyArea extends Area implements IArea
     public KeyArea() 
     {
         super();
-        this.openingLine = "Hello and welcome to this previously locked area, take a look around Mr Player";
+        this.openingLine = colours.getGreen()+"Hello and welcome to this previously locked area, take a look around Mr Player"+colours.getReset();
     }
     
     @Override

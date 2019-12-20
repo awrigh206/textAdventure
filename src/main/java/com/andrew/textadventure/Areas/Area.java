@@ -9,6 +9,7 @@ import com.andrew.textadventure.Creatures.Creature;
 import com.andrew.textadventure.Creatures.MagicFrog;
 import com.andrew.textadventure.Creatures.Player;
 import com.andrew.textadventure.Helpers.Choice;
+import com.andrew.textadventure.Helpers.Colours;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,9 +23,11 @@ public abstract class Area implements IArea
     protected Creature enemy;
     protected ArrayList<Creature> possibleCreatures;
     protected ArrayList<Choice> areaChoices;
+    protected Colours colours;
 
     public Area() 
     {
+        colours = new Colours();
         possibleCreatures = new ArrayList<>();
         possibleCreatures.add(new MagicFrog());
         generateEnemy();

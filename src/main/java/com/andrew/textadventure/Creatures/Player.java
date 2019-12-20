@@ -9,6 +9,7 @@ import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.MapGenerator;
 import java.util.ArrayList;
 import com.andrew.textadventure.Areas.IArea;
+import com.andrew.textadventure.Helpers.Colours;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;
 import java.lang.reflect.Method;
 
@@ -18,6 +19,8 @@ import java.lang.reflect.Method;
  */
 public class Player extends Creature
 {
+    Colours colours;
+
     private Creature enemy;
     private IArea currentArea;
     private final IArea[][] map;
@@ -38,6 +41,7 @@ public class Player extends Creature
         this.currentArea = map[xPosition][yPosition];
         choices = currentArea.getAreaChoices();
         this.enemy = currentArea.getEnemy();
+        this.colours = new Colours();
 
     }
     
@@ -115,7 +119,7 @@ public class Player extends Creature
     
     private void cannot()
     {
-        System.err.println("You may not move in that direction");
+        System.err.println(colours.getRed()+"You may not move in that direction"+colours.getReset());
         run();
     }
     
