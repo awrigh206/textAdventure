@@ -18,9 +18,9 @@ public class PlayerMover
     private final Player player;
     private final Colours colours;
 
-    public PlayerMover(IArea[][] map, Player player) 
+    public PlayerMover(Player player) 
     {
-        this.map = map;
+        this.map = player.getMap();
         this.player = player;
         this.colours = new Colours();
     }

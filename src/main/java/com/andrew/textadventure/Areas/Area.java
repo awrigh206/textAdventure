@@ -8,6 +8,7 @@ package com.andrew.textadventure.Areas;
 import com.andrew.textadventure.Creatures.Creature;
 import com.andrew.textadventure.Creatures.MagicFrog;
 import com.andrew.textadventure.Creatures.Player;
+import com.andrew.textadventure.Creatures.PlayerMover;
 import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.Colours;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;
@@ -54,7 +55,7 @@ public abstract class Area implements IArea
     
     protected ArrayList<Choice> getGenericChoices()
     {
-        Class playerClass = Player.class;
+        Class playerClass = PlayerMover.class;
         ArrayList<Choice> choices = new ArrayList<>();
         try
         {
@@ -73,6 +74,8 @@ public abstract class Area implements IArea
             Choice right = new Choice("Go right",playerClass.getMethod("moveX",int.class),true);
             right.setDirection(1);
             choices.add(right);
+            
+            Choice quit = new Choice("Quit the game",Player.class.getMethod("quit"),false);
         }
         
         catch (NoSuchMethodException e)

@@ -38,18 +38,17 @@ public class Player extends Creature
     private static int yPosition = 0;
     
     private Choice choice;
+    private PlayerMover mover;
 
     public Player(ArrayList<IArea> availableAreaTypes, int gameSize) 
     {
         this.gameSize = gameSize;
         MapGenerator generator = new MapGenerator(availableAreaTypes);
         this.map = generator.generateMap(gameSize,gameSize);
-        this.currentArea = map[xPosition][yPosition];
-        choices = currentArea.getAreaChoices();
-        this.enemy = currentArea.getEnemy();
         this.colours = new Colours();
         
         this.health=20;
+        this.mover = new PlayerMover(this);
 
     }
     
@@ -63,6 +62,11 @@ public class Player extends Creature
     
     public void run()
     {
+        //update global variables to change what the user sees for as the area may have changed
+        this.currentArea = map[xPosition][yPosition];
+        this.choices = currentArea.getAreaChoices();
+        this.enemy = currentArea.getEnemy();
+        
         Choice option = PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices);
         choice = option;
         
@@ -71,7 +75,8 @@ public class Player extends Creature
             Method action = option.getAction();
             if(option.isMovement())
             {
-                action.invoke(this,option.getDirection());
+                currentArea = (IArea)action.invoke(mover,option.getDirection());
+                run();
             }
             
             else if (!option.isMovement())
@@ -92,50 +97,6 @@ public class Player extends Creature
         
             
     } 
-
-    
-    public void moveX( int direction)
-    {
-        xPosition =move(direction,xPosition);
-        currentArea = map[xPosition][yPosition];
-        run();
-    }
-    
-    public void moveY(int direction)
-    {
-        yPosition =move(direction,yPosition);
-        currentArea = map[xPosition][yPosition];
-        run();
-    }
-    
-    public int move(int direction, int axis)
-    {
-        int limit = yPosition + direction;
-        System.out.println("direction: " +direction+"axis: " +axis);
-        if((axis+direction)>=0 && !((gameSize-1) <= limit))
-        {
-            axis += direction;
-            return axis;
-        }
-        
-        else
-        {
-            cannot();
-            return 0;
-        }
-            
-    }
-    
-    private void cannot()
-    {
-        System.err.println(colours.getRed()+"You may not move in that direction"+colours.getReset());
-        run();
-    }
-    
-    public void notImplementedYet()
-    {
-        
-    }
     
     public void fight ()
     {
@@ -234,6 +195,22 @@ public class Player extends Creature
     public int getGameSize() {
         return gameSize;
     }
+
+    public IArea[][] getMap() {
+        return map;
+    }
+    
+    public void notImplementedYet()
+    {
+        
+    }
+    
+    public void quit()
+    {
+        System.exit(0);
+    }
+    
+    
     
     
     
