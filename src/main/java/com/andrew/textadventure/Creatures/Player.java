@@ -145,7 +145,6 @@ public class Player extends Creature
             choices = PlayerInputHelper.assignLetter(choices);
             Choice option = PlayerInputHelper.getOption("What would you like to do next?", choices);
             
-            aiMove();
             option.getAction().invoke(this);
         }
         
@@ -166,6 +165,7 @@ public class Player extends Creature
     
     public void attack()
     {
+        aiMove();
         if(enemy.getHealth()>1)
         {
             enemy.takeDamage();
@@ -183,12 +183,13 @@ public class Player extends Creature
 
     public void defend()
     {
-        
+         System.out.println("You block the " + enemy.getName()+"'s vicous assualt, but what now?");
+         fight();
     }
     
     public void runAway()
     {
-        
+        run();
     }
     
 }
