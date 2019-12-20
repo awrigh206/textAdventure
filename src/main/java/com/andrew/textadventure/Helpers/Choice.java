@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
  */
 public class Choice 
 {
-    private String description;
+    private Object description;
     private char selectionLetter;
     private Method action;
     private boolean isMovement = false;
@@ -23,13 +23,13 @@ public class Choice
     public Choice() {
     }
 
-    public Choice(String description, Method action, boolean isMovement) {
+    public Choice(Object description, Method action, boolean isMovement) {
         this.description = description;
         this.action = action;
         this.isMovement = isMovement;
     }
  
-    public String getDescription() {
+    public Object getDescription() {
         return description;
     }
 

@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class KeyArea extends Area implements IArea 
 { 
-    private final String openingLine;
 
     public KeyArea() 
     {
@@ -37,12 +36,6 @@ public class KeyArea extends Area implements IArea
     @Override
     public String toString() {
         return "KeyArea{" + "openingLine=" + openingLine + '}';
-    }
-
-    @Override
-    public Creature getEnemy() 
-    {
-        return enemy;
     }
 
     @Override

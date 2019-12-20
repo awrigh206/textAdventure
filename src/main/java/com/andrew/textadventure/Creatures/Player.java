@@ -5,11 +5,14 @@
  */
 package com.andrew.textadventure.Creatures;
 
+import com.andrew.textadventure.Areas.GameArea;
 import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.MapGenerator;
 import java.util.ArrayList;
 import com.andrew.textadventure.Areas.IArea;
 import com.andrew.textadventure.Helpers.Colours;
+import com.andrew.textadventure.Helpers.Gesture;
+import com.andrew.textadventure.Helpers.Play;
 import com.andrew.textadventure.Helpers.PlayerInputHelper;
 import java.lang.reflect.Method;
 
@@ -20,6 +23,7 @@ import java.lang.reflect.Method;
 public class Player extends Creature
 {
     Colours colours;
+    Play play;
 
     private Creature enemy;
     private IArea currentArea;
@@ -32,6 +36,8 @@ public class Player extends Creature
     
     private static int xPosition = 0;
     private static int yPosition = 0;
+    
+    private Choice choice;
 
     public Player(ArrayList<IArea> availableAreaTypes, int gameSize) 
     {
@@ -58,6 +64,7 @@ public class Player extends Creature
     public void run()
     {
         Choice option = PlayerInputHelper.getOption(currentArea.getOpeningLine(), choices);
+        choice = option;
         
         try
         {
@@ -190,6 +197,22 @@ public class Player extends Creature
     public void runAway()
     {
         run();
+    }
+    
+    public void play()
+    {
+        GameArea area = (GameArea)currentArea;
+        
+        play = new Play((Gesture)choice.getDescription(),area.getGestures());
+        System.out.println(play.result());
+        
+        if(play.result().equals("Draw!") || play.result().equals("Lose!"))
+            run();
+        else
+        {
+            area.setHasWon(true);
+            run();
+        }
     }
     
 }

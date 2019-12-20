@@ -24,6 +24,7 @@ public abstract class Area implements IArea
     protected ArrayList<Creature> possibleCreatures;
     protected ArrayList<Choice> areaChoices;
     protected Colours colours;
+    protected String openingLine;
 
     public Area() 
     {
@@ -80,5 +81,9 @@ public abstract class Area implements IArea
         }
         
         return PlayerInputHelper.assignLetter(choices);
+    }
+
+    public Creature getEnemy() {
+        return enemy;
     }
 }

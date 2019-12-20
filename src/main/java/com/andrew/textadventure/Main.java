@@ -5,6 +5,7 @@
  */
 package com.andrew.textadventure;
 
+import com.andrew.textadventure.Areas.GameArea;
 import com.andrew.textadventure.Areas.IArea;
 import com.andrew.textadventure.Areas.KeyArea;
 import com.andrew.textadventure.Creatures.Player;
@@ -29,6 +30,7 @@ public class Main
     {
         availableAreas = new ArrayList<>();
         availableAreas.add(new KeyArea());
+        availableAreas.add(new GameArea());
     }
     
 }
