@@ -76,6 +76,7 @@ public abstract class Area implements IArea
             choices.add(right);
             
             Choice quit = new Choice("Quit the game",Player.class.getMethod("quit"),false);
+            choices.add(quit);
         }
         
         catch (NoSuchMethodException e)
