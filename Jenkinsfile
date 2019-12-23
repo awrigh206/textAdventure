@@ -9,10 +9,5 @@ pipeline {
              
          }
       }
-          
-    stage('Testing') 
-    {
-        
-    }
    }
 }
