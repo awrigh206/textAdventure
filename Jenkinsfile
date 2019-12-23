@@ -34,7 +34,7 @@ pipeline {
 				
 				steps
 				{
-					sh 'sudo docker build . -t text_adventure:latest'
+					sh 'sudo docker build . -t awrigh206/text_adventure'
 				}
 				
 				
