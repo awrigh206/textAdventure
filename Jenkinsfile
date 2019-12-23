@@ -1,5 +1,4 @@
 pipeline {
-   def app
    agent any
 
    stages {
@@ -39,15 +38,6 @@ pipeline {
 				
 			}
 
-		stage('Test image') {
-
-			steps 
-			{
-				app.inside {
-					sh 'echo "Tests passed"'
-				}
-			}
-		}
 
 		stage('Push image') {
 			/* push the created image onto docker hub so that it can be accessed by other services*/
@@ -56,8 +46,7 @@ pipeline {
 			{
 				docker.withRegistry('https://registry.hub.docker.com/', 'docker')
 				{
-					app.push("${env.BUILD_NUMBER}")
-					app.push("latest")
+					sh 'sudo docker push awrigh206/text_adventure:latest'
 				}
 			}
 			
