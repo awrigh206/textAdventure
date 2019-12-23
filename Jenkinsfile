@@ -29,23 +29,38 @@ pipeline {
 				/* This builds the actual image; synonymous to
 				 * docker build on the command line */
 
-				app = docker.build("awrigh206/text_adventure")
+				/*app = docker.build("awrigh206/text_adventure")*/
+				
+				steps
+				{
+					sh 'sudo docker build -t awrigh206/text_adventure'
+				}
+				
+				
 			}
 
 		stage('Test image') {
 
-			app.inside {
-				sh 'echo "Tests passed"'
+			steps 
+			{
+				app.inside {
+					sh 'echo "Tests passed"'
+				}
 			}
 		}
 
 		stage('Push image') {
 			/* push the created image onto docker hub so that it can be accessed by other services*/
-			docker.withRegistry('https://registry.hub.docker.com/', 'docker-hub-credentials')
+			
+			steps
 			{
-				app.push("${env.BUILD_NUMBER}")
-				app.push("latest")
+				docker.withRegistry('https://registry.hub.docker.com/', 'docker')
+				{
+					app.push("${env.BUILD_NUMBER}")
+					app.push("latest")
+				}
 			}
+			
 		}
    }
 }
