@@ -1,4 +1,5 @@
 pipeline {
+   def app
    agent any
 
    stages {
@@ -23,32 +24,29 @@ pipeline {
                 sh 'mvn test'
             }
         }
+		
+		    stage('Build image') {
+				/* This builds the actual image; synonymous to
+				 * docker build on the command line */
+
+				app = docker.build("awrigh206/text_adventure")
+			}
+
+		stage('Test image') {
+
+			app.inside {
+				sh 'echo "Tests passed"'
+			}
+		}
+
+		stage('Push image') {
+			/* push the created image onto docker hub so that it can be accessed by other services*/
+			docker.withRegistry('https://registry.hub.docker.com/', 'docker-hub-credentials')
+			{
+				app.push("${env.BUILD_NUMBER}")
+				app.push("latest")
+			}
+		}
    }
 }
 
-node {
-    def app
-
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("awrigh206/text_adventure")
-    }
-
-    stage('Test image') {
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
-
-    stage('Push image') {
-        /* push the created image onto docker hub so that it can be accessed by other services*/
-        docker.withRegistry('https://registry.hub.docker.com/', 'docker-hub-credentials')
-		{
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-        }
-    }
-}
