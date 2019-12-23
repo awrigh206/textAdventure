@@ -44,10 +44,7 @@ pipeline {
 			
 			steps
 			{
-				docker.withRegistry('https://registry.hub.docker.com/', 'docker')
-				{
 					sh 'sudo docker push awrigh206/text_adventure:latest'
-				}
 			}
 			
 		}
