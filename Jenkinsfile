@@ -20,6 +20,8 @@ pipeline {
 		
 		stage('Test') {
             steps {
+				sh 'pwd'
+				sh 'ls'
                 sh 'mvn test'
             }
         }
