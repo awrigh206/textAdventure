@@ -33,7 +33,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("awrigh206/textAdventure")
+        app = docker.build("awrigh206/text_adventure")
     }
 
     stage('Test image') {
