@@ -7,7 +7,6 @@ package com.andrew.textadventure.Helpers;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
-import javafx.scene.control.Label;
 
 /**
  *

@@ -6,12 +6,6 @@
 package com.andrew.textadventure.Helpers;
 
 import java.util.ArrayList;
-import javafx.geometry.Insets;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
 /**
  *
