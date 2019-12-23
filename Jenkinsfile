@@ -32,7 +32,7 @@ pipeline {
 				
 				steps
 				{
-					sh 'sudo docker build awrigh206/text_adventure'
+					sh 'sudo docker build textAdventure'
 				}
 				
 				
