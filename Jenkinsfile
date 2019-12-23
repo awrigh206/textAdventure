@@ -34,7 +34,7 @@ pipeline {
 				
 				steps
 				{
-					sh 'sudo docker build textAdventure'
+					sh 'sudo docker build .'
 				}
 				
 				
