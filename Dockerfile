@@ -1,5 +1,5 @@
 # use a Java base image
-FROM openjdk:latest
+FROM openjdk:7
 
 # set maintainer
 LABEL maintainer "miiro@getintodevops.com"
