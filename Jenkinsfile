@@ -26,6 +26,21 @@ pipeline {
             }
         }
 		
+		stage('SonarQube') 
+		{
+			environment
+			{
+				scannerHome = tool 'Scanner'
+			}
+			steps 
+			{
+				
+				withSonarQubeEnv('SonarQube') {
+					sh "${scannerHome}/bin/sonar-scanner"
+				}
+			}
+		}
+		
 		
 		
 		    stage('Build image') {
