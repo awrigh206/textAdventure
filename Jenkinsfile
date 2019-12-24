@@ -6,7 +6,7 @@ pipeline {
 	    {
          steps {
             //Get code from the right branch of the repository
-            git branch: 'refactor', url: 'https://github.com/awrigh206/textAdventure'
+            git branch: 'master', url: 'https://github.com/awrigh206/textAdventure'
              
          }
         }
