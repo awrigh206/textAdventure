@@ -8,6 +8,7 @@ package com.andrew.textadventure;
 import com.andrew.textadventure.Areas.GameArea;
 import com.andrew.textadventure.Areas.IArea;
 import com.andrew.textadventure.Areas.KeyArea;
+import com.andrew.textadventure.Areas.RiddleArea;
 import com.andrew.textadventure.Player.Player;
 import java.util.ArrayList;
 
@@ -31,6 +32,7 @@ public class Main
         availableAreas = new ArrayList<>();
         availableAreas.add(new KeyArea());
         availableAreas.add(new GameArea());
+        availableAreas.add(new RiddleArea());
     }
     
 }
