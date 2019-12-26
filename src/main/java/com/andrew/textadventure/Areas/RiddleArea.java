@@ -27,8 +27,10 @@ public class RiddleArea extends Area implements IArea
     }
 
     @Override
-    public ArrayList<Choice> getAreaChoices() {
-        return super.getGenericChoices();
+    public ArrayList<Choice> getAreaChoices() 
+    {
+        ArrayList<Choice> choices = super.getGenericChoices();
+        return choices;
     }
 
     @Override
