@@ -19,7 +19,7 @@ public class RiddleArea extends Area implements IArea
     public RiddleArea() 
     {
         super();
-        this.openingLine = "Welcome to the Riddle area, hope you manage to solve it!";
+        this.openingLine = colours.getPurple()+"Welcome to the Riddle area, hope you manage to solve it!" + colours.getReset();
     }
     @Override
     public boolean canEnter(Player player) {
