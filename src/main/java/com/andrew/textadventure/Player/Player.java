@@ -10,6 +10,7 @@ import com.andrew.textadventure.Helpers.Choice;
 import com.andrew.textadventure.Helpers.MapGenerator;
 import java.util.ArrayList;
 import com.andrew.textadventure.Areas.IArea;
+import com.andrew.textadventure.Areas.RiddleArea;
 import com.andrew.textadventure.Creatures.Creature;
 import com.andrew.textadventure.Helpers.Colours;
 import com.andrew.textadventure.Helpers.Gesture;
@@ -130,6 +131,30 @@ public class Player extends Creature
             area.setHasWon(true);
             run();
         }
+    }
+    
+    public void handleRiddle()
+    {
+        RiddleArea area = (RiddleArea)currentArea;
+        Choice option = PlayerInputHelper.getOption("What option do you choose Mr Player?", choices);
+        try
+        {
+            option.getAction().invoke(this);
+        }
+        
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        if(area.getCorrectChoice().equals(option))
+        {
+            System.out.println(colours.getGreen()+"You got it right! Well done!" + colours.getReset());
+            //player has chosent the correct option and so can proceed
+            area.setComplete(true);
+            run();
+        }
+        
     }
 
     public static int getxPosition() {
