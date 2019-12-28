@@ -100,12 +100,18 @@ public class Choice
         if (obj == null) {
             return false;
         }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         final Choice other = (Choice) obj;
         if (this.selectionLetter != other.selectionLetter) {
             return false;
         }
         return true;
     }
+
+    
+    
     
     
     

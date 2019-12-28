@@ -136,22 +136,18 @@ public class Player extends Creature
     public void handleRiddle()
     {
         RiddleArea area = (RiddleArea)currentArea;
-        Choice option = PlayerInputHelper.getOption("What option do you choose Mr Player?", choices);
-        try
-        {
-            option.getAction().invoke(this);
-        }
         
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-        if(area.getCorrectChoice().equals(option))
+        if(area.getCorrectChoice().equals(choice))
         {
             System.out.println(colours.getGreen()+"You got it right! Well done!" + colours.getReset());
             //player has chosent the correct option and so can proceed
             area.setComplete(true);
+            run();
+        }
+        
+        else
+        {
+            System.out.println(colours.getRed()+"Sorry, you got that one wrong, go ahead and try again though!" + colours.getReset());
             run();
         }
         
