@@ -6,6 +6,7 @@
 package com.andrew.textadventure.Helpers;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 /**
  *
@@ -78,6 +79,41 @@ public class Choice
     public void setInvokeOn(Object invokeOn) {
         this.invokeOn = invokeOn;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.description);
+        hash = 89 * hash + this.selectionLetter;
+        hash = 89 * hash + Objects.hashCode(this.action);
+        hash = 89 * hash + (this.isMovement ? 1 : 0);
+        hash = 89 * hash + Objects.hashCode(this.invokeOn);
+        hash = 89 * hash + this.direction;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Choice other = (Choice) obj;
+        if (this.selectionLetter != other.selectionLetter) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
+    
+    
     
     
     

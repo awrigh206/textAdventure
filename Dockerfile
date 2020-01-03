@@ -2,4 +2,4 @@
 FROM openjdk:7
 
 # set maintainer
-LABEL maintainer "miiro@getintodevops.com"
+LABEL maintainer "awrigh206"
