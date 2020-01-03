@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Andrew Wright
  */
-public class RiddleArea extends Area implements IArea 
+public class RiddleArea extends Area implements IArea, Cloneable
 {
     private Choice correctChoice;
     private boolean complete;

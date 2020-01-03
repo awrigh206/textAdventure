@@ -17,7 +17,7 @@ import java.util.Arrays;
  *
  * @author Andrew Wright
  */
-public class GameArea extends Area implements IArea
+public class GameArea extends Area implements IArea, Cloneable
 {
     ArrayList<Gesture> gestures;
     private boolean hasWon =false;

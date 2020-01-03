@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Andrew Wright
  */
-public class KeyArea extends Area implements IArea 
+public class KeyArea extends Area implements IArea , Cloneable
 { 
 
     public KeyArea() 

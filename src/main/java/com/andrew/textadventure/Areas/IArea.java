@@ -22,4 +22,5 @@ public interface IArea
     public ArrayList<Choice> getAreaChoices();
     public String getOpeningLine();
     public String toString();
+    public Object clone();
 }

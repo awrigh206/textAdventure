@@ -45,7 +45,7 @@ public class MapGenerator
     {
         Random random = new Random();
         int number = random.nextInt(typeOfArea.size());
-        return typeOfArea.get(number);
+        return (IArea)typeOfArea.get(number).clone();
     }
 
     @Override

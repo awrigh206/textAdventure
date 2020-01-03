@@ -19,7 +19,7 @@ import java.util.Random;
  *
  * @author Andrew Wright
  */
-public abstract class Area implements IArea
+public abstract class Area implements IArea, Cloneable 
 {
     protected Creature enemy;
     protected ArrayList<Creature> possibleCreatures;
@@ -91,4 +91,20 @@ public abstract class Area implements IArea
     public Creature getEnemy() {
         return enemy;
     }
+    
+    @Override
+    public Object clone()
+    { 
+        try
+        {
+           return super.clone(); 
+        }
+        
+        catch (CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+        
+    } 
 }
